@@ -1,6 +1,6 @@
 # Authors: Robert, Ronny
 from city import City;
-from functions import *;
+from functions import DFS, BFS, AStar, distance;
 import csv
 
 # Travaling Salesman Problem
@@ -11,11 +11,43 @@ cities = []
 
 # read data from csv file
 with open('city_data_50.csv', 'r') as file:
-    reader = csv.reader(file) # skip first line
+    reader = csv.reader(file) 
+    # skip first line
+    next(reader)
     # interate through each row in the csv file
     for row in reader:
         print(row)
         # add city object to array
-        cities.append(City(row[0], row[1], row[2], row[3]))
+        cities.append(City(row[0], row[1], float(row[2]), float(row[3])))
+
+
+# arbitrary starting city to be used for all algorithms
+START_CITY = cities[0]
+
+print("DFS Solution:")
+visited = []
+visited, distance_traveled = DFS(START_CITY, cities, visited, 0)
+
+
+
+print("Visited: ", visited)
+print("Distance traveled: ", distance_traveled)
+print("**********************************************************\n")
+
+print("BFS Solution:")
+
+
+# add BFS solution here
+
+
+
+print("**********************************************************\n")
+print("AStar Solution:")
+
+# add AStar solution here
+
+
+print("**********************************************************\n")
+
 
 
