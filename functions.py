@@ -24,6 +24,8 @@ def distance(lat1, lon1, lat2, lon2):
     print("Result:", distance)
     print("Should be:", 278.546, "km")
 
+    return distance
+
 def DFS(cities):
     # DFS here
     return
