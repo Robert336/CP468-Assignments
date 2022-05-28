@@ -8,8 +8,7 @@ class City:
         self.latitude = latitude
         self.longitude = longitude
         self.visited = False
-        self.neighbors = []
-        self.items = []
+        self.neighbors = [] # list of neighboring cities (idk if we need this)
 
     def add_neighbor(self, neighbor):
         self.neighbors.append(neighbor)
