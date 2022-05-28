@@ -13,7 +13,5 @@ class City:
     def add_neighbor(self, neighbor):
         self.neighbors.append(neighbor)
     
-
-
-    def __str__(self):
+    def __str__(self): # print city object (it will just print the name)
         return self.name;

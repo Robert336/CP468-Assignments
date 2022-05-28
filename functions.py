@@ -24,14 +24,14 @@ def distance(lat1, lon1, lat2, lon2):
     print("Result:", distance)
     print("Should be:", 278.546, "km")
 
-def DFS():
+def DFS(cities):
     # DFS here
     return
 
-def BFS():
+def BFS(cities):
     # BFS here
     return
 
-def AStar():
+def AStar(cities):
     # AStar here
     return
