@@ -1,4 +1,5 @@
 from math import sin, cos, sqrt, atan2, radians
+import csv
 
 
 # Calculate distance between two points on the Earth using Haversine formula
@@ -22,7 +23,6 @@ def distance(lat1, lon1, lat2, lon2):
 
     print("Result:", distance)
     print("Should be:", 278.546, "km")
-
 
 def DFS():
     # DFS here
