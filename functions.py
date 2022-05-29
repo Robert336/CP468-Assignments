@@ -72,23 +72,23 @@ def AStar(startCity, cities):
     cameFrom = [] # list of cities we have visited
     distSoFar = [] # distance traveled to each city
 
-    cameFrom.append(startCity)
-    distSoFar.append(0)
+    #cameFrom.append(startCity)
+    #distSoFar.append(0)
     
-    while frontier:
-        current = frontier.get()
+    while len(cameFrom) < len(cities):
+        current = frontier.get() # get city with lowest distance from last city
 
         # current is a tuple, so we need to unpack it
+        current_dist = current[0]
         current = current[1]
 
         if current not in cameFrom:
             cameFrom.append(current)
-            distSoFar.append(distSoFar[-1] + distance(cameFrom[-1].latitude, cameFrom[-1].longitude, current.latitude, current.longitude))
+            distSoFar.append(current_dist)
             for next in cities:
                 if next not in cameFrom:
                     newCost = distSoFar[-1] + distance(current.latitude, current.longitude, next.latitude, next.longitude)
                     frontier.put((newCost, next))
-                    if next == startCity:
-                        return cameFrom, distSoFar
-    return
+                    
+    return cameFrom, distSoFar
 

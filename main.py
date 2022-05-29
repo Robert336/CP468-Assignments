@@ -29,7 +29,7 @@ visited = []
 visited, distance_traveled = DFS(START_CITY, cities, visited, 0)
 
 print("Visited: ", visited)
-print("Distance traveled: ", distance_traveled)
+print("Distance traveled: ", distance_traveled, "KM")
 
 # reset visited and distance_traveled
 visited = []
@@ -50,7 +50,7 @@ print("AStar Solution:")
 
 visited, distSoFar = AStar(START_CITY, cities)
 print("Visited: ", visited)
-print("Distance traveled: ", distSoFar[-1])
+print("Distance traveled: ", distSoFar[-1], "KM")
 
 # reset visited and distance_traveled
 visited = []
