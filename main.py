@@ -16,7 +16,7 @@ with open('city_data_50.csv', 'r') as file:
     next(reader)
     # interate through each row in the csv file
     for row in reader:
-        print(row)
+        #print(row)
         # add city object to array
         cities.append(City(row[0], row[1], float(row[2]), float(row[3])))
 
@@ -25,8 +25,7 @@ with open('city_data_50.csv', 'r') as file:
 START_CITY = cities[0]
 
 print("DFS Solution:")
-visited = []
-visited, distance_traveled = DFS(START_CITY, cities, visited, 0)
+visited, distance_traveled = DFS(START_CITY, cities)
 
 print("Visited: ", visited)
 print("Distance traveled: ", distance_traveled, "KM")

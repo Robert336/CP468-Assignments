@@ -16,37 +16,32 @@ def distance(lat1, lon1, lat2, lon2):
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a)) 
     r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
-    return c * r
+    return abs(c * r)
 
-def DFS(startCity, cities, visited, distance_traveled):
+def DFS(startCity, cities):
     # DFS here
-    
-    if visited is None:
-        visited = []
-    
-    visited.append(startCity) # add start city to visited
+    distance_traveled = 0
+    visited = []
+    frontier = []
+    frontier.append(startCity)
 
-    print("in ", startCity)
+    # while stack is not empty
+    while len(frontier) > 0:
+        current = frontier.pop()
+        if current not in visited:
+            visited.append(current)
 
-    for next in cities:
-        if next not in visited:
-            print("Visiting ", next)
-
-            # calculate distance between current city and next city, and add to distance_traveled
-            distance_traveled += distance(startCity.latitude, startCity.longitude, next.latitude, next.longitude)
-            visited.append(next) # add next city to visited
-
-            # call DFS with next city
-            DFS(next, cities, visited, distance_traveled)
-    
-    # if we have traveled to all cities, return to our starting city
-    if len(visited) == len(cities):
-        # calculate the distance of traveling back to our starting city
-        print("Visited all cities, returning to ", visited[0])
-        distance_traveled += distance(startCity.latitude, startCity.longitude, visited[0].latitude, visited[0].longitude)
+            # for each city in cities that we have been to
+            for next in cities:
+                if next not in visited:
+                    frontier.append(next) # add city to stack
+            
+            # calculate distance traveled
+            distance_traveled += distance(current.latitude, current.longitude, frontier[-1].latitude, frontier[-1].longitude)
 
     return visited, distance_traveled
 
+    
 def BFS(startCity, cities, visited, distance_traveled):
     # BFS here
     if visited is None:
@@ -76,7 +71,8 @@ def AStar(startCity, cities):
     #cameFrom.append(startCity)
     #distSoFar.append(0)
     
-    while frontier:
+    while frontier.qsize() > 0:
+        #print("frontier: ", frontier.qsize())
         current = frontier.get() # get city with lowest distance from last city
 
         # current is a tuple, so we need to unpack it
