@@ -25,8 +25,7 @@ with open('city_data_50.csv', 'r') as file:
 START_CITY = cities[0]
 
 print("DFS Solution:")
-visited = []
-visited, distance_traveled = DFS(START_CITY, cities, visited, 0)
+visited, distance_traveled = DFS(START_CITY, cities)
 
 print("Visited: ", visited)
 print("Distance traveled: ", distance_traveled, "KM")

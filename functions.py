@@ -17,35 +17,27 @@ def distance(lat1, lon1, lat2, lon2):
     r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
     return abs(c * r)
 
-def DFS(startCity, cities, visited, distance_traveled):
+def DFS(startCity, cities):
     # DFS here
-    
-    if visited is None:
-        visited = []
-    
-    visited.append(startCity) # add start city to visited
+    distance_traveled = 0
+    visited = []
+    stack = []
+    stack.append(startCity)
 
-    print("in ", startCity)
+    while len(stack) > 0:
+        current = stack.pop()
+        if current not in visited:
+            visited.append(current)
 
-    for next in cities:
-        if next not in visited:
-            print("Visiting ", next)
-
-            # calculate distance between current city and next city, and add to distance_traveled
-            distance_traveled += distance(startCity.latitude, startCity.longitude, next.latitude, next.longitude)
-            visited.append(next) # add next city to visited
-
-            # call DFS with next city
-            DFS(next, cities, visited, distance_traveled)
-    
-    # if we have traveled to all cities, return to our starting city
-    if len(visited) == len(cities):
-        # calculate the distance of traveling back to our starting city
-        print("Visited all cities, returning to ", visited[0])
-        distance_traveled += distance(startCity.latitude, startCity.longitude, visited[0].latitude, visited[0].longitude)
+            for next in cities:
+                if next not in visited:
+                    stack.append(next)
+            
+            distance_traveled += distance(current.latitude, current.longitude, stack[-1].latitude, stack[-1].longitude)
 
     return visited, distance_traveled
 
+    
 def BFS(startCity, cities, visited, distance_traveled):
     # BFS here
     if visited is None:
