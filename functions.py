@@ -15,7 +15,7 @@ def distance(lat1, lon1, lat2, lon2):
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a)) 
     r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
-    return c * r
+    return abs(c * r)
 
 def DFS(startCity, cities, visited, distance_traveled):
     # DFS here
@@ -75,7 +75,8 @@ def AStar(startCity, cities):
     #cameFrom.append(startCity)
     #distSoFar.append(0)
     
-    while frontier:
+    while frontier.qsize() > 0:
+        #print("frontier: ", frontier.qsize())
         current = frontier.get() # get city with lowest distance from last city
 
         # current is a tuple, so we need to unpack it

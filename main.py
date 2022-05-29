@@ -16,7 +16,7 @@ with open('city_data_50.csv', 'r') as file:
     next(reader)
     # interate through each row in the csv file
     for row in reader:
-        print(row)
+        #print(row)
         # add city object to array
         cities.append(City(row[0], row[1], float(row[2]), float(row[3])))
 
