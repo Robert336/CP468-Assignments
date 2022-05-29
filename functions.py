@@ -5,6 +5,7 @@ from queue import PriorityQueue
 
 # Calculate distance between two points on the Earth using Haversine formula
 def distance(lat1, lon1, lat2, lon2):
+    # source: https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
 
     # convert decimal degrees to radians 
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
