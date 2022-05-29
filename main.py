@@ -28,10 +28,12 @@ print("DFS Solution:")
 visited = []
 visited, distance_traveled = DFS(START_CITY, cities, visited, 0)
 
-
-
 print("Visited: ", visited)
 print("Distance traveled: ", distance_traveled)
+
+# reset visited and distance_traveled
+visited = []
+distance_traveled = 0
 print("**********************************************************\n")
 
 print("BFS Solution:")
@@ -40,13 +42,18 @@ print("BFS Solution:")
 # add BFS solution here
 
 
-
+# reset visited and distance_traveled
+visited = []
+distance_traveled = 0
 print("**********************************************************\n")
 print("AStar Solution:")
 
-# add AStar solution here
+visited, distSoFar = AStar(START_CITY, cities)
+print("Visited: ", visited)
+print("Distance traveled: ", distSoFar[-1])
 
-
+# reset visited and distance_traveled
+visited = []
 print("**********************************************************\n")
 
 
