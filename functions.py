@@ -21,19 +21,22 @@ def DFS(startCity, cities):
     # DFS here
     distance_traveled = 0
     visited = []
-    stack = []
-    stack.append(startCity)
+    frontier = []
+    frontier.append(startCity)
 
-    while len(stack) > 0:
-        current = stack.pop()
+    # while stack is not empty
+    while len(frontier) > 0:
+        current = frontier.pop()
         if current not in visited:
             visited.append(current)
 
+            # for each city in cities that we have been to
             for next in cities:
                 if next not in visited:
-                    stack.append(next)
+                    frontier.append(next) # add city to stack
             
-            distance_traveled += distance(current.latitude, current.longitude, stack[-1].latitude, stack[-1].longitude)
+            # calculate distance traveled
+            distance_traveled += distance(current.latitude, current.longitude, frontier[-1].latitude, frontier[-1].longitude)
 
     return visited, distance_traveled
 
