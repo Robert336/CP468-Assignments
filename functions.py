@@ -19,13 +19,7 @@ def distance(lat1, lon1, lat2, lon2):
     c = 2 * asin(sqrt(a)) 
     r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
     return abs(c * r)
-"""
-output:
-DFS Solution:
-Visited:  [Alabama, Wyoming, Wisconsin, West Virginia, Washington, Virginia, Vermont, Utah, Texas, Tennessee, South Dakota, South Carolina, Rhode Island, Pennsylvania, Oregon, Oklahoma, Ohio, New York, North Dakota, North Carolina, New Mexico, New Jersey, New Hampshire, Nevada, Nebraska, Montana, Missouri, Mississippi, Minnesota, Michigan, Massachusetts, Maryland, Maine, Louisiana, Kentucky, Kansas, Iowa, Indiana, Illinois, Idaho, Georgia, Florida, Hawaii, Delaware, Connecticut, Colorado, California, Arkansas, Arizona, Alaska]
-Distance traveled:  95137.93332557622 KM
-**********************************************************
-"""
+
 
 
 
@@ -53,13 +47,13 @@ def DFS(startCity, cities):
             distance_traveled += distance(current.latitude, current.longitude, frontier[-1].latitude, frontier[-1].longitude)
 
     return visited, distance_traveled
-"""
-output:
-AStar Solution:
-Visited:  [Alabama, Georgia, Florida, Mississippi, Tennessee, Louisiana, South Carolina, Arkansas, Kentucky, West Virginia, North Carolina, Indiana, Missouri, Illinois, Ohio, Virginia, Oklahoma, Texas, Kansas, Maryland, Michigan, Iowa, Pennsylvania, Wisconsin, Delaware, Nebraska, New Jersey, Minnesota, New York, Connecticut, Rhode Island, Massachusetts, New Hampshire, Vermont, South Dakota, New Mexico, Colorado, Wyoming, Maine, North Dakota, Arizona, Utah, Montana, Idaho, Nevada, California, Oregon, Washington, Alaska, Hawaii, Alabama]
-Distance traveled:  14160.096858141367 KM
-**********************************************************
-"""
+    """
+    output:
+    DFS Solution:
+    Visited:  [Alabama, Wyoming, Wisconsin, West Virginia, Washington, Virginia, Vermont, Utah, Texas, Tennessee, South Dakota, South Carolina, Rhode Island, Pennsylvania, Oregon, Oklahoma, Ohio, New York, North Dakota, North Carolina, New Mexico, New Jersey, New Hampshire, Nevada, Nebraska, Montana, Missouri, Mississippi, Minnesota, Michigan, Massachusetts, Maryland, Maine, Louisiana, Kentucky, Kansas, Iowa, Indiana, Illinois, Idaho, Georgia, Florida, Hawaii, Delaware, Connecticut, Colorado, California, Arkansas, Arizona, Alaska]
+    Distance traveled:  95137.93332557622 KM
+    **********************************************************
+    """
     
 def BFS(startCity, cities):
     # BFS here
@@ -148,4 +142,10 @@ def AStar(startCity, cities):
     cameFrom.append(cameFrom[0])
                     
     return cameFrom, distSoFar
-
+    """
+    output:
+    AStar Solution:
+    Visited:  [Alabama, Georgia, Florida, Mississippi, Tennessee, Louisiana, South Carolina, Arkansas, Kentucky, West Virginia, North Carolina, Indiana, Missouri, Illinois, Ohio, Virginia, Oklahoma, Texas, Kansas, Maryland, Michigan, Iowa, Pennsylvania, Wisconsin, Delaware, Nebraska, New Jersey, Minnesota, New York, Connecticut, Rhode Island, Massachusetts, New Hampshire, Vermont, South Dakota, New Mexico, Colorado, Wyoming, Maine, North Dakota, Arizona, Utah, Montana, Idaho, Nevada, California, Oregon, Washington, Alaska, Hawaii, Alabama]
+    Distance traveled:  14160.096858141367 KM
+    **********************************************************
+    """
