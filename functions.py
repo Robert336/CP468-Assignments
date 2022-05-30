@@ -19,9 +19,20 @@ def distance(lat1, lon1, lat2, lon2):
     c = 2 * asin(sqrt(a)) 
     r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
     return abs(c * r)
+"""
+output:
+DFS Solution:
+Visited:  [Alabama, Wyoming, Wisconsin, West Virginia, Washington, Virginia, Vermont, Utah, Texas, Tennessee, South Dakota, South Carolina, Rhode Island, Pennsylvania, Oregon, Oklahoma, Ohio, New York, North Dakota, North Carolina, New Mexico, New Jersey, New Hampshire, Nevada, Nebraska, Montana, Missouri, Mississippi, Minnesota, Michigan, Massachusetts, Maryland, Maine, Louisiana, Kentucky, Kansas, Iowa, Indiana, Illinois, Idaho, Georgia, Florida, Hawaii, Delaware, Connecticut, Colorado, California, Arkansas, Arizona, Alaska]
+Distance traveled:  95137.93332557622 KM
+**********************************************************
+"""
+
+
 
 def DFS(startCity, cities):
-    # DFS here
+    # run time will be O(V + E) where V is the number of cities and E is the number of edges
+    # V = 50, E = 50 * 50 = 2500
+
     distance_traveled = 0
     visited = []
     frontier = []
@@ -42,7 +53,13 @@ def DFS(startCity, cities):
             distance_traveled += distance(current.latitude, current.longitude, frontier[-1].latitude, frontier[-1].longitude)
 
     return visited, distance_traveled
-
+"""
+output:
+AStar Solution:
+Visited:  [Alabama, Georgia, Florida, Mississippi, Tennessee, Louisiana, South Carolina, Arkansas, Kentucky, West Virginia, North Carolina, Indiana, Missouri, Illinois, Ohio, Virginia, Oklahoma, Texas, Kansas, Maryland, Michigan, Iowa, Pennsylvania, Wisconsin, Delaware, Nebraska, New Jersey, Minnesota, New York, Connecticut, Rhode Island, Massachusetts, New Hampshire, Vermont, South Dakota, New Mexico, Colorado, Wyoming, Maine, North Dakota, Arizona, Utah, Montana, Idaho, Nevada, California, Oregon, Washington, Alaska, Hawaii, Alabama]
+Distance traveled:  14160.096858141367 KM
+**********************************************************
+"""
     
 def BFS(startCity, cities):
     # BFS here
@@ -96,6 +113,8 @@ def AStar(startCity, cities):
     # Edge cost: distance between current city and next city
     # Successor function: return all cities that are not visited
     
+    # run time will be O(n!)
+
     frontier = PriorityQueue()
     frontier.put((0, startCity)) # .put((distance from last city, city object))
 
@@ -121,7 +140,7 @@ def AStar(startCity, cities):
                 if next not in cameFrom: # if we have not visited this city yet
                     # calculate distance (cost) between current city and next city
                     newCost = distSoFar[-1] + distance(current.latitude, current.longitude, next.latitude, next.longitude)
-                    # add city to frontier AKA priority queue
+                    # add city and it's dsitance (cost) to frontier AKA priority queue
                     frontier.put((newCost, next))
     
     # calculate the distance of traveling back to our starting city
