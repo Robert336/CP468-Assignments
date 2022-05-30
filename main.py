@@ -35,11 +35,6 @@ visited = []
 distance_traveled = 0
 print("**********************************************************\n")
 
-print("BFS Solution:")
-
-
-# add BFS solution here
-
 
 # reset visited and distance_traveled
 visited = []
@@ -55,5 +50,15 @@ print("Distance traveled: ", distSoFar[-1], "KM")
 visited = []
 print("**********************************************************\n")
 
+# add BFS solution here
+print("BFS Solution:")
 
+visited, distance_traveled = BFS(START_CITY, cities)
+
+print("Visited: ", visited)
+print("Distance traveled: ", distance_traveled, "KM")
+
+# reset visited and distance_traveled
+visited = []
+distance_traveled = 0
 

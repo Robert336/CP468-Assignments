@@ -1,6 +1,8 @@
 from math import sin, cos, sqrt, atan2, radians, asin
 import csv
 from queue import PriorityQueue
+from sys import maxsize
+from itertools import permutations
 
 
 # Calculate distance between two points on the Earth using Haversine formula
@@ -42,18 +44,50 @@ def DFS(startCity, cities):
     return visited, distance_traveled
 
     
-def BFS(startCity, cities, visited, distance_traveled):
+def BFS(startCity, cities):
     # BFS here
-    if visited is None:
-        visited = []
-
     
+    #set the cities visted to an empty list
+    visited = []
+
+    # go through all cities and append them to visited, aside from the starting city
+    for i in cities:
+        # checks if i is not the starting city
+        if i != startCity:
+            visited.append(i)
+
+
+    distance_traveled = visited
+    #permuations to calcluate n!, which in this case would be 50!
+    next_factorial = permutations(visited)
+    # run a while loop for the next permutation in the list 50! 49! 48!... 
+    # once next_factorial is less than or equal to one stop the loop as there are no more factorals to be calculated
+    while next_factorial <= 1:
+        current = 0
+
+        # setting variable k to the starting city 
+        k = startCity
+
+        #for loop for calculating the cost of the path
+        for j in i:
+            # adding the longitude and latitude of the current and next permutation 
+            current_path += distance(current.latitude, current.longitude, distance_traveled.latitude, distance_traveled.longitude)
+            
+            #incrementing k to the current paths longitude and latitude 
+            k = current.latitude & current.longitude
+
+        # setting current path to the value of k and startCity
+        current_path += k & startCity
+
+        # setting the total distance travelled 
+        distance_traveled = min(distance_traveled, current)
+
+
+
+
+    return distance_traveled, visited
+            
         
-
-
-
-    
-    return
 
 def AStar(startCity, cities):
     # Intial state: startCity
