@@ -57,3 +57,15 @@ def generate_chromosome(size):
     This function takes a size of the chess board and returns a random chromosome.
     """
     return [ random.randint(1, size) for i in range(size) ]
+
+def mutate(chromosome):
+    """
+    This function takes a chromosome and returns its mutated chromosome.
+    We are only changing the position of one queen.
+    """
+    size = len(chromosome)
+    mutate_point = random.randint(0, size-1)
+    mutate_value = random.randint(1, size)
+    chromosome[mutate_point] = mutate_value
+    return chromosome
+    
