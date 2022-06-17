@@ -1,8 +1,7 @@
 
 
 
-# Fitness Function
-from locale import DAY_1
+import random
 
 
 def fitness(chromosome):
@@ -34,8 +33,8 @@ def fitness(chromosome):
         diag_col += counter / (size - abs(i - size + 1))
         
 
-
-    return int(maxFitness(chromosome) - (horiz_col + diag_col))
+    # loewr is better for fitness (less collisions)
+    return int(maxFitness(chromosome) - (horiz_col + diag_col)) #28-(2+3)=23
 
 def maxFitness(chromosome):
     """
@@ -43,3 +42,18 @@ def maxFitness(chromosome):
     """
     nq = len(chromosome)
     return (nq*(nq-1))/2
+
+def cross_over(chromosome1, chromosome2):
+    """
+    This function takes two chromosomes and returns their crossover.
+    """
+    size = len(chromosome1)
+    cross_point = random.randint(0, size-1) # random cross point generation
+    return chromosome1[:cross_point] + chromosome2[cross_point:] # return crossover of chromosomes at cross point
+
+
+def generate_chromosome(size):
+    """
+    This function takes a size of the chess board and returns a random chromosome.
+    """
+    return [ random.randint(1, size) for i in range(size) ]
