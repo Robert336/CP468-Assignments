@@ -10,8 +10,6 @@ def fitness(chromosome):
     """
     size = len(chromosome)
 
-    t1 = 0
-    t2 = 0
     diag1 = [0] * 2 * size # left and up diagonal
     diag2 = [0] * 2 * size # right and up diagonal
     
