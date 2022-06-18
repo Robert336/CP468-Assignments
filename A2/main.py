@@ -22,10 +22,8 @@ while not maxFitness in [ functions.fitness(chromosome) for chromosome in popula
         if functions.fitness(child) == maxFitness:
             break # if child has max fitness, stop
 
-        # kill the weakest chromosome
-        population.sort(key=lambda chromosome: functions.fitness(chromosome), reverse=True)
-        population = population[:population_size - 1]
-        
+        # remove the weakest chromosome from the gene pool
+        population.remove(min(population, key=functions.fitness))     
 
     gen += 1 # new generation created
 print("Problem solving in generation: ", gen)
