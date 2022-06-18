@@ -87,9 +87,13 @@ def genetic_child(population, max_fitness):
     """
     This function takes a population and max fitness and returns a child.
     """
+    mutation_prob = 0.1
+
     parent1 = select_parent(population, max_fitness)
     parent2 = select_parent(population, max_fitness)
     child = cross_over(parent1, parent2)
-    child = mutate(child)
+    if random.random() < mutation_prob:
+        child = mutate(child)
+ 
     return child
 
