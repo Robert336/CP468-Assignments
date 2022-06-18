@@ -1,6 +1,3 @@
-
-
-
 import random
 
 
@@ -66,4 +63,33 @@ def mutate(chromosome):
     mutate_value = random.randint(1, size)
     chromosome[mutate_point] = mutate_value
     return chromosome
-    
+
+def get_probability(chromosome, max_fitness):
+    """
+    This function takes a chromosome and max fitness and returns its probability of being selected.
+    """
+    return fitness(chromosome) / max_fitness
+
+def select_parent(population, max_fitness):
+    """
+    This function takes a population and max fitness and returns a random parent.
+    """
+    probability = [ get_probability(chromosome, max_fitness) for chromosome in population ]
+    total_probability = sum(probability)
+    random_probability = random.uniform(0, total_probability)
+    for i in range(len(population)):
+        random_probability -= probability[i]
+        if random_probability <= 0:
+            return population[i]
+
+
+def genetic_child(population, max_fitness):
+    """
+    This function takes a population and max fitness and returns a child.
+    """
+    parent1 = select_parent(population, max_fitness)
+    parent2 = select_parent(population, max_fitness)
+    child = cross_over(parent1, parent2)
+    child = mutate(child)
+    return child
+
