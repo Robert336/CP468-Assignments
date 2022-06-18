@@ -3,13 +3,14 @@ import functions
 print("N-Queens GA")
 print("-----------------------------------------------------")
 
-num_of_queens = 8
-population_size = 100
-population = [ functions.generate_chromosome(num_of_queens) for i in range(population_size) ]
-maxFitness = functions.maxFitness(population[0])
+num_of_queens = 8 # number of queens
+population_size = 100 # population size
+population = [ functions.generate_chromosome(num_of_queens) for i in range(population_size) ] # generate initial population
+maxFitness = functions.maxFitness(population[0]) # get max fitness for this problem
 
-gen = 1
+gen = 1 # generation counter
 
+# while loop until we find a solution
 while not maxFitness in [ functions.fitness(chromosome) for chromosome in population ]:
     print("Generation:", gen)
     
@@ -26,7 +27,7 @@ while not maxFitness in [ functions.fitness(chromosome) for chromosome in popula
         population.remove(min(population, key=functions.fitness))     
 
     gen += 1 # new generation created
-print("Problem solving in generation: ", gen)
+print("Problem solved in generation: ", gen)
 
 # find the solution chromosome
 for chromosome in population:
